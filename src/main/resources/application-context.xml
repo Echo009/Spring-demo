@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+
+    <bean id="lan" class="cn.echo0.bean.Lan" name="aCuteGirl" init-method="init" destroy-method="close"  >
+        <property name="relName" value="lanlan"></property>
+        <property name="favoriteColor" value="pink"></property>
+        <property name="feature" value="very cute"></property>
+    </bean>
+    <alias name="lan" alias="erZhuZi"/>
+    <alias name="lan" alias="favoritePeople"/>
+    <bean id="food" class="cn.echo0.bean.Food" scope="prototype"/>
+    <bean id="echo0" class="cn.echo0.bean.Echo0" autowire="byName" depends-on="lan">
+        <lookup-method name="getFood" bean="food"/>
+        <property name="favoritecolor">
+            <bean id="lan.favoriteColor"
+                  class="org.springframework.beans.factory.config.PropertyPathFactoryBean"></bean>
+        </property>
+        <!--<property name="favoritePeople" ref="lan"/>-->
+        <!--对于favoritePeople属性，因为给lan指定了别名所以可以根据名称注入-->
+        <property name="relName" value="Oubd"/>
+        <property name="responsibility">
+            <list>
+                <value>Love Lan</value>
+                <value>Care for Lan</value>
+            </list>
+        </property>
+        <property name="health">
+            <props>
+                <prop key="height">174cm</prop>
+            </props>
+        </property>
+        <property name="grade">
+            <map>
+                <entry key="program" value="80"></entry>
+            </map>
+        </property>
+        <property name="music">
+            <set>
+                <value>nothing on you</value>
+            </set>
+        </property>
+    </bean>
+    <bean id="theMostFavoritePeople" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+        <!--指定该bean来自哪个bean的getter方法-->
+        <property name="targetBeanName" value="echo0"/>
+        <!--指定来自目标bean的哪个getter方法-->
+        <property name="propertyPath" value="favoritePeople"/>
+    </bean>
+    <!--<bean id="echo0" class="cn.echo0.bean.Echo0" >-->
+    <!--<constructor-arg name="favoritecolor" value="Lan"></constructor-arg>-->
+    <!--<constructor-arg name="favoritePeople" ref="lan"></constructor-arg>-->
+    <!--<constructor-arg name="relName" value="Oubd"></constructor-arg>-->
+    <!--<constructor-arg name="responsibility">-->
+    <!--<list>-->
+    <!--<value>Love Lan</value>-->
+    <!--<value>Care for Lan</value>-->
+    <!--</list>-->
+    <!--</constructor-arg>-->
+    <!--</bean>-->
+    <bean id="staticDream" class="cn.echo0.factory.SimpleFactory" factory-method="staticGenDream"></bean>
+    <bean id="factory" class="cn.echo0.factory.SimpleFactory"></bean>
+    <bean id="plainDream" factory-bean="factory" factory-method="genDream">
+        <constructor-arg value="hey,please keep on going!"/>
+    </bean>
+</beans>
