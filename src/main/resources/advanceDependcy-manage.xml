@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
     <bean id="pen" class="cn.echo0.bean.Pen">
         <property name="color">
+            <!--获取成员属性-->
             <bean class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
                 <property name="targetObject">
                     <bean class="cn.echo0.bean.Ink">
@@ -13,5 +15,21 @@
                 <property name="propertyPath" value="color"></property>
             </bean>
         </property>
+    </bean>
+    <!--获取对象域-->
+    <bean id="staticTarget" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <!--<property name="targetClass" value="java.sql.Connection"/>-->
+        <!--<property name="targetField" value="TRANSACTION_SERIALIZABLE"/>-->
+        <property name="staticField" value="java.sql.Connection.TRANSACTION_SERIALIZABLE"/>
+    </bean>
+    <bean id="staticMethodReturn" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="cn.echo0.method.Methods"/>
+        <property name="targetMethod" value="staticMethod"/>
+    </bean>
+    <bean id="instanceMethodReturn" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <bean class="cn.echo0.method.Methods"/>
+        </property>
+        <property name="targetMethod" value="instanceMethod"/>
     </bean>
 </beans>

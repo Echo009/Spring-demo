@@ -7,7 +7,12 @@ package cn.echo0.bean;
  */
 public class Ink {
     private String color;
+    Ink(){
 
+    }
+    Ink(String color){
+        this.color=color;
+    }
     public String getColor() {
         return color;
     }

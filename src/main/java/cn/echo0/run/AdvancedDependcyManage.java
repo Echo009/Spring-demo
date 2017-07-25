@@ -18,7 +18,9 @@ public class AdvancedDependcyManage {
         System.out.println(((Lan)myFavoritePeople).getRelName());
         Pen pen = (Pen) ctx.getBean("pen");
         pen.usePen();
+        System.out.println(ctx.getBean("staticTarget"));
+        System.out.println(ctx.getBean("staticMethodReturn"));
+        System.out.println(ctx.getBean("instanceMethodReturn"));
         ctx.registerShutdownHook();
-
     }
 }
