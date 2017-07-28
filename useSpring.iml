@@ -7,6 +7,9 @@
           <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/advanceDependcy-manage.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/context-schema.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>

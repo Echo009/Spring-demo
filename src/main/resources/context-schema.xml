@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-4.0.xsd">
     <bean id="lan" class="cn.echo0.bean.Lan" p:relName="lanlan" p:feature="very cute" p:favoriteColor="pink"/>
-    <bean id="ink" class="cn.echo0.bean.Ink" c:color="red"/>
+    <bean id="ink" class="cn.echo0.bean.Ink" c:color="red" />
     <bean id="food" class="cn.echo0.bean.Food" scope="prototype"/>
     <bean id="echo0" class="cn.echo0.bean.Echo0" depends-on="lan"
           p:relName="Oubd"
@@ -18,6 +18,7 @@
           p:music-ref="echo0.music">
         <lookup-method bean="food" name="getFood"/>
     </bean>
+    <util:property-path path="echo0.favoritePeople" id="cuteBoy"/>
     <util:set id="echo0.music" set-class="java.util.HashSet">
         <value>好喜欢你</value>
         <value>lan</value>

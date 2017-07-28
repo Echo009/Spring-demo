@@ -25,6 +25,8 @@
             <list>
                 <value>Love Lan</value>
                 <value>Care for Lan</value>
+                <ref bean="lan"/>
+                <bean id="lan" class="cn.echo0.bean.Lan"/>
             </list>
         </property>
         <property name="health">
@@ -35,11 +37,13 @@
         <property name="grade">
             <map>
                 <entry key="program" value="80"></entry>
+                <entry key-ref="lan" value-ref="lan"/>
             </map>
         </property>
         <property name="music">
             <set>
                 <value>nothing on you</value>
+
             </set>
         </property>
     </bean>
@@ -49,20 +53,22 @@
         <!--指定来自目标bean的哪个getter方法-->
         <property name="propertyPath" value="favoritePeople"/>
     </bean>
-    <!--<bean id="echo0" class="cn.echo0.bean.Echo0" >-->
-    <!--<constructor-arg name="favoritecolor" value="Lan"></constructor-arg>-->
-    <!--<constructor-arg name="favoritePeople" ref="lan"></constructor-arg>-->
-    <!--<constructor-arg name="relName" value="Oubd"></constructor-arg>-->
-    <!--<constructor-arg name="responsibility">-->
-    <!--<list>-->
-    <!--<value>Love Lan</value>-->
-    <!--<value>Care for Lan</value>-->
-    <!--</list>-->
-    <!--</constructor-arg>-->
+    <!--<bean id="echo00" class="cn.echo0.bean.Echo0" >-->
+        <!--<constructor-arg name="favoritecolor" value="Lan"></constructor-arg>-->
+        <!--<constructor-arg name="favoritePeople" ref="lan"></constructor-arg>-->
+        <!--<constructor-arg name="relName" value="Oubd"></constructor-arg>-->
+        <!--<constructor-arg name="responsibility">-->
+            <!--<list>-->
+                <!--<value>Love Lan</value>-->
+                <!--<value>Care for Lan</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+        <!--<lookup-method bean="food" name="getFood"/>-->
     <!--</bean>-->
     <bean id="staticDream" class="cn.echo0.factory.SimpleFactory" factory-method="staticGenDream"></bean>
     <bean id="factory" class="cn.echo0.factory.SimpleFactory"></bean>
     <bean id="plainDream" factory-bean="factory" factory-method="genDream">
         <constructor-arg value="hey,please keep on going!"/>
     </bean>
+    <bean class="cn.echo0.processor.SimpleBeanProcessor"/>
 </beans>
