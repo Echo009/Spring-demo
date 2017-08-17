@@ -4,12 +4,13 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-4.0.xsd">
     <bean id="lan" class="cn.echo0.bean.Lan" p:relName="lanlan" p:feature="very cute" p:favoriteColor="pink"/>
-    <bean id="ink" class="cn.echo0.bean.Ink" c:color="red" />
+    <bean id="ink" class="cn.echo0.bean.Ink" c:color="red"/>
     <bean id="food" class="cn.echo0.bean.Food" scope="prototype"/>
     <bean id="echo0" class="cn.echo0.bean.Echo0" depends-on="lan"
           p:relName="Oubd"
@@ -26,4 +27,13 @@
     <util:map id="echo0.grade" map-class="java.util.HashMap">
         <entry key="program" value="80"/>
     </util:map>
+    <!--配置缓存-->
+
+    <cache:annotation-driven cache-manager="cacheManager"/>
+    <bean id="ehCacheCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+          p:configLocation="classpath:ehcache.xml"
+          p:shared="false">
+    </bean>
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+          p:cacheManager-ref="ehCacheCacheManager"/>
 </beans>

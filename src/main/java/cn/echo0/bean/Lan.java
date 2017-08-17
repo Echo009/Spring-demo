@@ -1,9 +1,11 @@
 package cn.echo0.bean;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.event.ApplicationContextEvent;
 
 /**
@@ -11,7 +13,7 @@ import org.springframework.context.event.ApplicationContextEvent;
  * Email  : ech0.extreme@foxmail.com
  * Time   : 07/19/2017 11:26 PM
  */
-public class Lan implements People , BeanNameAware , InitializingBean,DisposableBean{
+public class Lan implements People , BeanNameAware ,ApplicationContextAware, InitializingBean,DisposableBean{
     String relName;
     String favoriteColor;
     String feature;
@@ -35,6 +37,10 @@ public class Lan implements People , BeanNameAware , InitializingBean,Disposable
         System.out.println("destroying ... (destroy-method)");
     }
 
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println(" setting applicationContext ~");
+    }
+
     public class GetIll extends ApplicationContextEvent {
 
         /**
@@ -55,7 +61,7 @@ public class Lan implements People , BeanNameAware , InitializingBean,Disposable
     }
 
     public void setRelName(String relName) {
-        this.relName = relName;
+        System.out.println("set property ~");this.relName = relName;
     }
 
     public String getFavoriteColor() {

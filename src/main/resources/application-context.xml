@@ -12,7 +12,7 @@
     <alias name="lan" alias="erZhuZi"/>
     <alias name="lan" alias="favoritePeople"/>
     <bean id="food" class="cn.echo0.bean.Food" scope="prototype"/>
-    <bean id="echo0" class="cn.echo0.bean.Echo0" autowire="byName" depends-on="lan">
+    <bean id="echo0" class="cn.echo0.bean.Echo0" autowire="byName" depends-on="lan" lazy-init="true">
         <lookup-method name="getFood" bean="food"/>
         <property name="favoritecolor">
             <bean id="lan.favoriteColor"

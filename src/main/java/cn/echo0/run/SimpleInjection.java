@@ -20,18 +20,23 @@ public class SimpleInjection {
         Dream staticDream = (Dream)ctx.getBean("staticDream");
         System.out.println(staticDream);
     }
+    private static void beanLifeCycle(AbstractApplicationContext ctx){
+        Lan lan  = (Lan) ctx.getBean("lan");
+
+    }
     public static void main(String[] args) {
         AbstractApplicationContext ctx =
                 new ClassPathXmlApplicationContext("application-context.xml");
-        Echo0 echo0 = (Echo0) ctx.getBean("echo0");
-        echo0.loveLan();
-        echo0.say();
-        System.out.println(echo0);
-        ctx.publishEvent(((Lan)ctx.getBean("lan")).new GetIll(ctx));
-        System.out.println(ctx==echo0.getCtx());
-//    管理作用域不同的bean之间的依赖
-        echo0.eatFood();
-        echo0.eatFood();
+//        Echo0 echo0 = (Echo0) ctx.getBean("echo0");
+//        echo0.loveLan();
+//        echo0.say();
+//        System.out.println(echo0);
+//        //事件机制
+//        ctx.publishEvent(((Lan)ctx.getBean("lan")).new GetIll(ctx));
+//        System.out.println(ctx==echo0.getCtx());
+////    管理作用域不同的bean之间的依赖
+//        echo0.eatFood();
+//        echo0.eatFood();
         ctx.registerShutdownHook();
 
 
